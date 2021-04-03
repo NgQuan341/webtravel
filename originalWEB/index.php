@@ -33,18 +33,6 @@ https://templatemo.com/tm-540-lava-landing-page
 
 <body>
 
-
-    <!-- ***** Preloader Start ***** -->
-    <!-- <div id="preloader">
-        <div class="jumper">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div> -->
-    <!-- ***** Preloader End ***** -->
-
-
     <!-- ***** Header Area Start ***** -->
     <header class="header-area header-sticky">
         <div class="container col-11">
@@ -73,16 +61,18 @@ https://templatemo.com/tm-540-lava-landing-page
                                 </ul>
                             </li>
                             <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+                            <li class="scroll-to-section" id="section-login"><a href="login.php" class="menu-item">login</a></li>
+                            <li class="scroll-to-section" id="section-login"><a href="signup.php" class="menu-item">sign up</a></li>
 
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
-                        <a href="index.html" class="logo1">
+                        <a href="signup.php" class="logo1">
                             sign up
                          </a>
 
-                        <a href="login.html" class="logo1">
+                        <a href="login.php" class="logo1">
                             login
                          </a>
                         <!-- ***** Menu End ***** -->
