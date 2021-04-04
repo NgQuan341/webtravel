@@ -96,7 +96,7 @@
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">
               <?php
-              include 'xuly.php';
+              include 'tour_process.php';
               $ketqua = $tour->action->displayOne($tour->tablename, $tour->col_id, $_GET['id']);
               while ($row = $ketqua->fetch_assoc()) {
               ?>

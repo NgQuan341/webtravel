@@ -128,7 +128,7 @@
                 </thead>
                 <tbody>
                 <?php
-                    include 'connectDB.php';
+                    include '../process/connectDB.php';
                     $objAcc = new Accounts();
 
                     $ketqua = $objAcc->action->display($objAcc->tablename);
@@ -143,7 +143,7 @@
                     <td><?php echo $row['username']?></td>
                     <td><?php echo $row['password']?></td>
                     <td><?php echo $row['email']?></td>
-                    <td><?php echo $row['email']?></td>
+                    <td><?php echo $row['rule']?></td>
                     <td>
                     
                       <a href="edit-account.php?id=<?php echo $row['id_acc']?>" class=" tm-product-update-link ">

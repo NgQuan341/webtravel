@@ -144,7 +144,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="password">Password</label>
-                  <input id="password" name="password" type="password" class="form-control validate" value="<?php echo $row['password'] ?>" />
+                  <input id="password" name="password" type="text" class="form-control validate" value="<?php echo $row['password'] ?>" />
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="password2">Re-enter Password</label>
@@ -152,7 +152,7 @@
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" class="form-control validate" />
+                  <input id="phone" name="phone" type="tel" class="form-control validate" value="<?php echo $row['phone'] ?>" />
                 </div>
                 <div class="col-12">
                   <button type="submit" name="submit_account" class="btn btn-primary btn-block text-uppercase">
