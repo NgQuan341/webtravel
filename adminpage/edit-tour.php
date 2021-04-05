@@ -152,7 +152,7 @@
                     <label for="category">Category</label>
                     <select class="custom-select tm-select-accounts" id="category" name="id_cate">
                       <?php
-                      // include '/process/connectDB.php';
+                      
                       $cate = new Categories();
                       $result=$cate->action->display($cate->tablename);
                       while($r=$result->fetch_assoc()){
@@ -185,7 +185,7 @@
                     <div class="form-group mb-3 col-xs-12 col-sm-6">
                       <label for="date_end">Date End
                       </label>
-                      <input id="date_end" name="date_end" type="text" value="<?php echo $row['date_end'] ?>" class="form-control validate" />
+                      <input id="date_end" name="date_end" type="text" value="<?php echo $row['date_end']?>" class="form-control validate" />
                     </div>
 
                     <div class="form-group mb-3 col-xs-12 col-sm-6">

@@ -108,7 +108,13 @@
     <section class="section" id="about">
         <div class="right-image-decor"></div>
         <div class="container">
-
+            <?php
+            include '../process/connectDB.php';
+            $tour = new Tours();
+            $result = $tour->action->displayOne($tour->tablename,$tour->col_id,$_GET['id']);
+            if($row = $result->fetch_assoc()){
+                ?>
+                
             <div class="row">
                 <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
                     data-scroll-reveal="enter left move 30px over 0.6s after 0.4s" data-scroll-reveal-id="29"
@@ -118,17 +124,24 @@
 
                 <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix" id="inforofTour">
                     <div class="tour-infomation">
-                        <h2 id="displaynameTour" style="font-size: 40px; font-weight:600">SA PA</h2>
+                        <h2 id="displaynameTour" style="font-size: 40px; font-weight:600">
+                            <?php echo $row['name_tour']?>
+                        </h2>
 
                         <p id="star_remark">
-                        <p><i class="fa fa-usd " style="color: #f4813f ;" aria-hidden="true"></i> 1000000</p>
+                        <p><i class="fa fa-usd mr-4 " style="color: #f4813f ;" aria-hidden="true">
+                    </i><?php echo $row['price']?></p>
 
                         </p>
+                       
                         <p>
-                        <p><i class="fa fa-calendar" style="color: #f4813f ;" aria-hidden="true"></i> 5 Days</p>
+                        <p><i class="fa fa-map-marker mr-4" style="color: #f4813f ;" aria-hidden="true"></i><?php echo $row['from_place']?></p>
                         </p>
+
                         <p>
-                        <p><i class="fa fa-map-marker" style="color: #f4813f ;" aria-hidden="true"></i> Sa Pa</p>
+                            <?php for($i=0;$i<$row['remark'];$i++){ ?>
+                        <i class="fa fa-star mr-1" style="color: #f4813f ;" aria-hidden="true"></i>
+                        <?php }?>
                         </p>
                     </div>
                     <br>
@@ -136,18 +149,15 @@
                     <div>
                         <h2>Information</h2>
                         <p id="tour-infomation-content-descript">
-                            Du lịch miền Bắc du khách sẽ được khám phá những thắng cảnh thiên nhiên đẹp
-                            mê hồn cùng nhiều công trình kiến trúc ấn tượng được tạo nên bởi bàn tay khéo léo của con
-                            người.Cùng Du Lịch SaoViettravel tìm hiểu những địa điểm
-                            du lịch tâm linh ở miền bắc hấp dẫn nhất như Hà Nội – Lào Cai – Sapa – Fansipan.
+                        <?php echo $row['description']?>
                         </p>
                         <div class="tour-infomation-content-time-table">
                             <span>Thời gian khởi hành</span>
-                            <p>01/04/2021</p>
+                            <p><?php echo date('d/m/Y',strtotime($row['date_start']))?></p>
                         </div>
                         <div class="tour-infomation-content-time-table">
                             <span>Thời gian trở lại</span>
-                            <p>05/04/2021</p>
+                            <p><?php echo date('d/m/Y',strtotime($row['date_end']))?></p>
                         </div>
                         <div class="tour-infomation-content-time-table">
                             <span>Khởi hành</span>
@@ -170,6 +180,10 @@
                     <button type="submit" id="form-submit" class="main-button my-5 col-6"> BOOK TOUR</button>
                 </div>
             </div>
+            <?php
+            }
+            ?>
+
         </div>
     </section>
 
