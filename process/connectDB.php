@@ -35,7 +35,7 @@
               }
         }
         public function update($tablename,$col_id,$id,$data){
-            $sql = "UPDATE `$tablename` SET $data where $col_id= $id";
+            $sql = "UPDATE `$tablename` SET $data where `$col_id`= $id";
             if ($this->con->con->query($sql) === TRUE) {
                 echo "Update successfully";
               } else {
@@ -82,10 +82,11 @@
         public $col_date_end="date_end";
         public $col_place="from_place";
         public $col_description="description";
-        public $col_people="peopel";
+        public $col_people="people";
         public $col_remark="remark";
         public $col_img="img";
         public $col_id_cate="id_cate";
+        public $col_sale="sale";
 
         private $id;
         private $name_tour;
@@ -98,6 +99,7 @@
         private $remark;
         private $img;
         private $id_cate;
+        private $sale;
 
         public function __construct()
         {
@@ -106,7 +108,7 @@
         public function getID(){
             return $this->id;
         }
-        public function setData($id,$name_tour,$price,$date_start,$date_end,$from_place,$description,$people,$remark,$img,$id_cate){
+        public function setData($id,$name_tour,$price,$date_start,$date_end,$from_place,$description,$people,$remark,$img,$id_cate,$sale){
             $this->id=$id;
             $this->name_tour=$name_tour;
             $this->price=$price;
@@ -118,19 +120,21 @@
             $this->remark=$remark;
             $this->img=$img;
             $this->id_cate=$id_cate;
+            $this->sale=$sale;
         }
         public function getDataToUpdate(){
             $data=
             "`$this->col_name`='$this->name_tour',
             `$this->col_price`=$this->price,
-            `$this->col_date_start`=$this->date_start,
-            `$this->col_date_end`=$this->date_end,
-            `$this->col_place`=$this->from_place,
-            `$this->col_description`=$this->description,
+            `$this->col_date_start`='$this->date_start',
+            `$this->col_date_end`='$this->date_end',
+            `$this->col_place`='$this->from_place',
+            `$this->col_description`='$this->description',
             `$this->col_people`=$this->people,
             `$this->col_remark`=$this->remark,
-            `$this->col_img`=$this->img,
-            `$this->col_id_cate`=$this->id_cate";
+            `$this->col_img`='$this->img',
+            `$this->col_id_cate`=$this->id_cate,
+            `$this->col_sale`=$this->sale";
             return $data;
         }
         public function getDataToInsert(){
@@ -144,18 +148,20 @@
                 `$this->col_people`,
                 `$this->col_remark`,
                 `$this->col_img`,
-                `$this->col_id_cate`", 
+                `$this->col_id_cate`,
+                `$this->col_sale`", 
                 
-                "`$this->name`,
-                `$this->price`, 
-                `$this->date_start`,
-                `$this->date_end`, 
-                `$this->place`,
-                `$this->description`,
-                `$this->people`,
-                `$this->remark`,
-                `$this->img`,
-                `$this->id_cate`"];
+                "'$this->name_tour',
+                '$this->price', 
+                '$this->date_start',
+                '$this->date_end', 
+                '$this->from_place',
+                '$this->description',
+                '$this->people',
+                '$this->remark',
+                '$this->img',
+                '$this->id_cate',
+                '$this->sale'"];
             return $data;
         }
 
@@ -172,7 +178,7 @@
         public $col_phone='phone';
         public $col_address='address';
         public $col_img='img';
-        public $col_rule='rule';
+        public $col_role='role';
 
 
 
@@ -185,12 +191,12 @@
         private $phone;
         private $address;
         private $img;
-        private $rule;
+        private $role;
         public function __construct(){
             $this->action = new Action();
         }
         public function setData($id,$username,$email,$password,
-        $lname,$fname,$phone,$address,$img,$rule){           
+        $lname,$fname,$phone,$address,$img,$role){           
                 $this->id=$id;
                 $this->username=$username;
                 $this->email=$email;
@@ -200,7 +206,7 @@
                 $this->phone=$phone;
                 $this->address=$address;
                 $this->img=$img;
-                $this->rule=$rule;
+                $this->role=$role;
                 
         }
         public function getID(){
@@ -216,7 +222,7 @@
             `$this->col_phone`,
             `$this->col_address`,
             `$this->col_img`,
-            `$this->col_rule`",
+            `$this->col_role`",
             
             "'$this->username',
             '$this->email',
@@ -226,7 +232,7 @@
             '$this->phone',
             '$this->address',
             '$this->img',
-            '$this->rule'"];
+            '$this->role'"];
             return $data;
         }
         public function getDataToUpdate(){
@@ -239,7 +245,7 @@
             `$this->col_phone`='$this->phone',
             `$this->col_address`='$this->address',
             `$this->col_img`='$this->img',
-            `$this->col_rule`='$this->rule'
+            `$this->col_role`='$this->role'
             ";
             return $data;
 
@@ -247,9 +253,52 @@
         
     }
     class BookTours{
+        public $action;
+        public $tablename="book_tour";
+        public $col_id="id_book";
+        public $col_id_acc='id_acc';
+        public $col_id_tour='id_tour';
+
+        private $id;
+        private $id_book;
+        private $id_acc;
+        private $id_tour;
+        public function __construct(){
+            $this->action = new Action();
+        }
+
+
         
     }
     class Categories{
+        public $action;
+        public $tablename="categories";
+        public $col_id="id_category";
+        public $col_category_name='category_name';
+
+        private $id;
+        private $cate_name;
+        public function __construct(){
+            $this->action = new Action();
+        }
+
+        public function setData($id,$cate_name){
+            $this->id=$id;
+            $this->cate_name=$cate_name;
+        }
+        public function getDataToInsert(){
+            $data=["
+            `$this->col_category_name`",  
+            "'$this->cate_name'"];
+            return $data;
+        }
+        public function getDataToUpdate(){
+            $data="
+            `$this->col_category_name`='$this->cate_name'";
+            return $data;
+
+        }
+
         
     }
 ?>

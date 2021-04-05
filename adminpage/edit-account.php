@@ -21,12 +21,21 @@
 
 <body id="reportsPage">
   <div class="" id="home">
-    <nav class="navbar navbar-expand-xl">
+  <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.php">
           <h1 class="tm-site-title mb-0">Travel Admin</h1>
         </a>
-        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        
+        <button
+          class="navbar-toggler ml-auto mr-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <i class="fas fa-bars tm-nav-icon"></i>
         </button>
 
@@ -35,11 +44,20 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
-                <span class="sr-only">(current)</span>
+                <!-- <span class="sr-only">(current)</span> -->
               </a>
             </li>
+
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <i class="far fa-file-alt"></i>
                 <span> Reports <i class="fas fa-angle-down"></i> </span>
               </a>
@@ -49,19 +67,29 @@
                 <a class="dropdown-item" href="#">Yearly Report</a>
               </div>
             </li>
+
             <li class="nav-item">
               <a class="nav-link" href="tours.php">
-                <i class="fas fa-shopping-cart"></i> Products
+                <i class="fas fa-shopping-cart"></i> Tours
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active" href="accounts.html">
+              <a class="nav-link active" href="accounts.php">
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
                 <i class="fas fa-cog"></i>
                 <span> Settings <i class="fas fa-angle-down"></i> </span>
               </a>
@@ -70,7 +98,8 @@
                 <a class="dropdown-item" href="#">Billing</a>
                 <a class="dropdown-item" href="#">Customize</a>
               </div>
-            </li>
+            </li> -->
+            
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -82,6 +111,7 @@
         </div>
       </div>
     </nav>
+
     <div class="container mt-5">
       <div class="row tm-content-row">
         <div class="col-12 tm-block-col">
@@ -100,7 +130,7 @@
       </div>
       <!-- row -->
       <?php
-      include 'connectDB.php';
+      include '../process/connectDB.php';
       $objAcc = new Accounts();
 
       $ketqua = $objAcc->action->displayOne($objAcc->tablename, $objAcc->col_id, $_GET['id']);
@@ -110,6 +140,7 @@
 
         <div class="row tm-content-row">
           <div class="tm-block-col tm-col-avatar">
+
             <div class="tm-bg-primary-dark tm-block tm-block-avatar">
               <h2 class="tm-block-title">Change Avatar</h2>
               <div class="tm-avatar-container">
@@ -122,6 +153,7 @@
                 Upload New Photo
               </button>
             </div>
+
           </div>
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
@@ -129,42 +161,65 @@
               <?php
               //
               ?>
-              <form action="xuly.php" method="post" class="tm-signup-form row">
-              <div class="form-group col-lg-6">
+              <form action="../process/account_process.php" method="post" class="tm-signup-form row">
+
+                <div class="form-group col-lg-6">
                   <label for="id">Id</label>
                   <input id="id" name="id_acc" type="number" class="form-control validate" value="<?php echo $row['id_acc'] ?>" />
                 </div>
+
                 <div class="form-group col-lg-6">
                   <label for="name">Account Name</label>
                   <input id="name" name="username" type="text" class="form-control validate" value="<?php echo $row['username'] ?>" />
                 </div>
+
+                <div class="form-group col-lg-6">
+                  <label for="fname">First Name</label>
+                  <input id="fname" name="fname" type="text" class="form-control validate" value="<?php echo $row['fname'] ?>" />
+                </div>
+
+                <div class="form-group col-lg-6">
+                  <label for="lname">Last Name</label>
+                  <input id="lname" name="lname" type="text" class="form-control validate" value="<?php echo $row['lname'] ?>" />
+                </div>
+
                 <div class="form-group col-lg-6">
                   <label for="email">Account Email</label>
                   <input id="email" name="email" type="email" class="form-control validate" value="<?php echo $row['email'] ?>" />
                 </div>
+
                 <div class="form-group col-lg-6">
                   <label for="password">Password</label>
                   <input id="password" name="password" type="text" class="form-control validate" value="<?php echo $row['password'] ?>" />
                 </div>
+
                 <div class="form-group col-lg-6">
-                  <label for="password2">Re-enter Password</label>
-                  <input id="password2" name="password2" type="password" class="form-control validate" />
+                  <label for="address">Address</label>
+                  <input id="address" name="address" type="text" class="form-control validate" value="<?php echo $row['address'] ?>"/>
                 </div>
+                
                 <div class="form-group col-lg-6">
                   <label for="phone">Phone</label>
                   <input id="phone" name="phone" type="tel" class="form-control validate" value="<?php echo $row['phone'] ?>" />
                 </div>
+                <div class="form-group col-12">
+                <label for="role">Role</label>
+                <select class="custom-select" id="role" name="role">
+                  <option value="admin">Admin</option>
+                  <option value="customer">Customer</option>
+                </select>
+                </div>
+
                 <div class="col-12">
                   <button type="submit" name="submit_account" class="btn btn-primary btn-block text-uppercase">
                   Update Your Profile
                   </button>
                 </div>
+
                 <div class="form-group col-12">
                   <label class="tm-hide-sm">&nbsp;</label>
-                  <a href="account_process.php?id_acc_delete=<?php echo $row['id_acc'] ?>" class="btn btn-primary btn-block text-uppercase">
-
+                  <a href="process/account_process.php?id_acc_delete=<?php echo $row['id_acc'] ?>" class="btn btn-primary btn-block text-uppercase">
                     Delete your account
-                   
                   </a>
                 </div>
                 

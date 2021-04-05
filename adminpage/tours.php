@@ -27,6 +27,7 @@
         <a class="navbar-brand" href="index.php">
           <h1 class="tm-site-title mb-0">Travel Admin</h1>
         </a>
+        
         <button
           class="navbar-toggler ml-auto mr-0"
           type="button"
@@ -44,9 +45,10 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
-                <span class="sr-only">(current)</span>
+                <!-- <span class="sr-only">(current)</span> -->
               </a>
             </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -66,9 +68,10 @@
                 <a class="dropdown-item" href="#">Yearly Report</a>
               </div>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link active" href="products.html">
-                <i class="fas fa-shopping-cart"></i> Products
+              <a class="nav-link active" href="tours.php">
+                <i class="fas fa-shopping-cart"></i> Tours
               </a>
             </li>
 
@@ -77,7 +80,8 @@
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-            <li class="nav-item dropdown">
+
+            <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -95,7 +99,8 @@
                 <a class="dropdown-item" href="#">Billing</a>
                 <a class="dropdown-item" href="#">Customize</a>
               </div>
-            </li>
+            </li> -->
+            
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -113,6 +118,24 @@
       <div class="row tm-content-row">
         <div class="col-sm-12 col-md-12 col-lg-8 col-xl-8 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-products">
+          <?php
+                  include '../process/connectDB.php';
+                  $obj=new Tours();
+                  $cate = new Categories();
+                  if(isset($_GET['id_cate'])){
+                  $find_one_cate=$cate->action->displayOne($cate->tablename,$cate->col_id,$_GET['id_cate']);
+                  if($assoc= $find_one_cate->fetch_assoc()){
+                  ?>
+                  <h2 class="tm-block-title"><?php echo $assoc['category_name']?> Tours</h2>
+                  <?php
+                  }
+                  }
+                  else{?>
+                  <h2 class="tm-block-title">ALL Tours</h2>
+                  <?php
+                  }
+                  ?>
+                  
             <div class="tm-product-table-container">
             
               <table class="table table-hover tm-table-small tm-product-table">
@@ -121,38 +144,59 @@
                   <tr>
                     <th scope="col">&nbsp;</th>
                     <th scope="col">TOUR NAME</th>
-                    <th scope="col">BOOKS</th>
                     <th scope="col">PRICE</th>
+                    <th scope="col">PEOPLE</th>
                     <th scope="col">SALE</th>
                     <th scope="col">&nbsp;</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php
-                  include 'connectDB.php';
-                  $obj=new Tours();
-                
+                  
+                  <?php                
                   $ketqua=$obj->action->display($obj->tablename);
                   while($row=$ketqua->fetch_assoc()){
-                  
+                  if(isset($_GET['id_cate'])){
+                    if($row['id_cate']==$_GET['id_cate']){              
                   ?>
-                  <!-- phần in các dòng dữ liệu trong bảng Tour -->
-                  <tr>
+                 
+                  <tr onclick="chooseTour(<?php echo $row['id_tour']?>)">
                     <th scope="row"><input type="checkbox" /></th>
                     <td class="tm-product-name"><?php echo $row['name_tour']?></td>
                     <td><?php echo $row['price']?></td>
-                    <td><?php echo $row['price']?></td>
-                    <td><?php echo $row['id_tour']?></td>
+                    <td><?php echo $row['people']?></td>
+                    <td><?php echo $row['sale']?></td>
                     <td>
                       <a href="edit-tour.php?id=<?php echo $row['id_tour']?>" class="tm-product-update-link">
                         <i class="far fa-edit tm-product-delete-icon"></i>
                       </a>
-                      <a href="tour_process.php?id_tour_delete=<?php echo $row['id_tour']?>" class="tm-product-delete-link">
+                      <a href="../process/tour_process.php?id_tour_delete=<?php echo $row['id_tour']?>" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>
                   </tr>
+
                   <?php
+                    }
+                   }
+                   else {?>
+                   <tr onclick="chooseTour(<?php echo $row['id_tour']?>)">
+                      <th scope="row"><input type="checkbox" /></th>
+                      <td class="tm-product-name"><?php echo $row['name_tour']?></td>
+                      <td><?php echo $row['price']?></td>
+                      <td><?php echo $row['people']?></td>
+                      <td><?php echo $row['sale']?></td>
+                      <td>
+                      <a href="edit-tour.php?id=<?php echo $row['id_tour']?>" class="tm-product-update-link">
+                        <i class="far fa-edit tm-product-delete-icon"></i>
+                      </a>
+                      <a href="../process/tour_process.php?id_tour_delete=<?php echo $row['id_tour']?>" class="tm-product-delete-link">
+                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                      </a>
+                    </td>
+                  </tr>
+
+                   <?php
+                   }
                   }
                   ?>
                    <!-- ======================================= -->
@@ -161,14 +205,8 @@
               </table>
             </div>
             <!-- table container -->
-            <a
-              href="add-tour.php"
-              class="btn btn-primary btn-block text-uppercase mb-3"
-              >Add new product</a
-            >
-            <button class="btn btn-primary btn-block text-uppercase">
-              Delete selected products
-            </button>
+            <a href="add-tour.php" class="btn btn-primary btn-block text-uppercase mb-3">Add new tour</a>
+            <a href="tours.php" class="btn btn-primary btn-block text-uppercase mb-3">See All tours</a>
           </div>
         </div>
 
@@ -176,19 +214,24 @@
         
         <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 tm-block-col">
           <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-            <h2 class="tm-block-title">Product Categories</h2>
+            <h2 class="tm-block-title">Tour Categories</h2>
             <div class="tm-product-table-container">
-              <table class="table tm-table-small tm-product-table">
+              <table class="table tm-table-small table-hover table-focus tm-product-table">
                 <tbody>
-                  <!-- phần in các dòng dữ liệu trong bảng Categories -->
-                  <tr>
-                    <td class="tm-product-name">Product Category 1</td>
-                    <td class="text-center">
-                      <a href="#" class="tm-product-delete-link">
-                        <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                      </a>
-                    </td>
-                  </tr>
+                <?php 
+                    $find_all_cate=$cate->action->display($cate->tablename);                   
+                    while($r=$find_all_cate->fetch_assoc()){
+                    ?>
+                    <tr>
+                      <td class="tm-category-name" onclick="chooseCategory(<?php echo $r['id_category']?>)"><?php echo $r['category_name']?></td>
+                      <td class="text-center">
+                        <a href="tours.php?id_cate=<?php echo $r['id_category']?>" class="tm-category-link">
+                          <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                      </td>
+                    </tr>
+                <?php } ?>
+                  
                      <!-- ======================================= -->
 
                 </tbody>
@@ -207,15 +250,7 @@
 
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. Design:
-          <a
-            rel="nofollow noopener"
-            href="https://templatemo.com"
-            class="tm-footer-link"
-            >Template Mo</a
-          >
-        </p>
+        
       </div>
     </footer>
 
@@ -224,18 +259,12 @@
     <script src="js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
-      // function click(){
-      //   $id=document.querySelector(".tm-product-update-link").getAttribute('href');
-      //      window.location.href = $id;
-
-      // }
-      $(function () {
-        $(".tm-product-name").on("click", function () {
-          $id=document.querySelector(".tm-product-update-link").getAttribute('href');
-           window.location.href = $id;
-         // window.location.href = "edit-tour.php?id=";
-        });
-      });
+      function chooseCategory($id){
+        window.location.href = "tours.php?id_cate="+$id;
+      }
+      function chooseTour($id){
+        window.location.href = "edit-tour.php?id="+$id;
+      }
     </script>
   </body>
 </html>

@@ -541,6 +541,7 @@ input[type="checkbox"]:focus {
     font-weight: 600;
 }
 
+.tm-category-name,
 .tm-product-name {
     font-size: 0.95rem;
     font-weight: 600;

@@ -22,67 +22,96 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-xl">
-    <div class="container h-100">
-      <a class="navbar-brand" href="index.php">
-        <h1 class="tm-site-title mb-0">Travel Admin</h1>
-      </a>
-      <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars tm-nav-icon"></i>
-      </button>
+<nav class="navbar navbar-expand-xl">
+      <div class="container h-100">
+        <a class="navbar-brand" href="index.php">
+          <h1 class="tm-site-title mb-0">Travel Admin</h1>
+        </a>
+        
+        <button
+          class="navbar-toggler ml-auto mr-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mx-auto h-100">
-          <li class="nav-item">
-            <a class="nav-link" href="index.php">
-              <i class="fas fa-tachometer-alt"></i> Dashboard
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="far fa-file-alt"></i>
-              <span> Reports <i class="fas fa-angle-down"></i> </span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Daily Report</a>
-              <a class="dropdown-item" href="#">Weekly Report</a>
-              <a class="dropdown-item" href="#">Yearly Report</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="products.html">
-              <i class="fas fa-shopping-cart"></i> Products
-            </a>
-          </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto h-100">
+            <li class="nav-item">
+              <a class="nav-link" href="index.php">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <!-- <span class="sr-only">(current)</span> -->
+              </a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="accounts.php">
-              <i class="far fa-user"></i> Accounts
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-cog"></i>
-              <span> Settings <i class="fas fa-angle-down"></i> </span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
-              <a class="dropdown-item" href="#">Billing</a>
-              <a class="dropdown-item" href="#">Customize</a>
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link d-block" href="login.php">
-              Admin, <b>Logout</b>
-            </a>
-          </li>
-        </ul>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="far fa-file-alt"></i>
+                <span> Reports <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Daily Report</a>
+                <a class="dropdown-item" href="#">Weekly Report</a>
+                <a class="dropdown-item" href="#">Yearly Report</a>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link active" href="tours.php">
+                <i class="fas fa-shopping-cart"></i> Tours
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="accounts.php">
+                <i class="far fa-user"></i> Accounts
+              </a>
+            </li>
+
+            <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i class="fas fa-cog"></i>
+                <span> Settings <i class="fas fa-angle-down"></i> </span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Profile</a>
+                <a class="dropdown-item" href="#">Billing</a>
+                <a class="dropdown-item" href="#">Customize</a>
+              </div>
+            </li> -->
+            
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link d-block" href="login.php">
+                Admin, <b>Logout</b>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
   <div class="container tm-mt-big tm-mb-big">
     <div class="row">
@@ -96,15 +125,13 @@
           <div class="row tm-edit-product-row">
             <div class="col-xl-6 col-lg-6 col-md-12">
               <?php
-              include 'tour_process.php';
+              include '../process/tour_process.php';
               $ketqua = $tour->action->displayOne($tour->tablename, $tour->col_id, $_GET['id']);
               while ($row = $ketqua->fetch_assoc()) {
               ?>
-              <form action="xuly.php" method="post" class="tm-edit-product-form">
+              <form action="../process/tour_process.php" method="post" class="tm-edit-product-form">
                   <div class="form-group mb-3">
-                    <label for="id">ID
-                    </label>
-                    <input id="id" name="id" type="text" style="color: grey" disabled value="<?php echo $row['id_tour'] ?>" class="form-control validate" />
+                    <input id="id_tour" name="id_tour" type="hidden" style="color: grey"  value="<?php echo $row['id_tour'] ?>" class="form-control validate"/>
                   </div>
                   <div class="form-group mb-3">
                     <label for="name_tour">Tour name
@@ -120,26 +147,59 @@
                     <label for="description">Description</label>
                     <textarea class="form-control validate tm-small" rows="5" id="description" name="description"><?php echo $row['description'] ?></textarea>
                   </div>
-                  <div class="form-group mb-3">
+                  <div class="row">
+                    <div class="form-group mb-3 col-6">                    
                     <label for="category">Category</label>
-                    <select class="custom-select tm-select-accounts" id="category">
-                      <option>Select category</option>
-                      <option value="1" selected>New Arrival</option>
-                      <option value="2">Most Popular</option>
-                      <option value="3">Trending</option>
+                    <select class="custom-select tm-select-accounts" id="category" name="id_cate">
+                      <?php
+                      // include '/process/connectDB.php';
+                      $cate = new Categories();
+                      $result=$cate->action->display($cate->tablename);
+                      while($r=$result->fetch_assoc()){
+                      ?>
+                      <option value=<?php echo $r['id_category']?> ><?php echo $r['category_name']?></option>
+                      <?php } ?>
                     </select>
                   </div>
+                  <div class="form-group mb-3 col-6">
+                  
+                    <label for="sale">Sale</label>
+                    <select class="custom-select tm-select-accounts" id="sale" name="sale">
+      
+                      <option value="true">TRUE</option>
+                      <option value="false">FALSE</option>
+                    </select>
+                  </div>
+                  
+                  </div>
+
+                  
+
                   <div class="row">
+                  <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <label for="date_start">Date Start
+                      </label>
+                      <input id="date_start" name="date_start" type="text" value="<?php echo $row['date_start'] ?>" class="form-control validate" />
+                    </div>
+
+                    <div class="form-group mb-3 col-xs-12 col-sm-6">
+                      <label for="date_end">Date End
+                      </label>
+                      <input id="date_end" name="date_end" type="text" value="<?php echo $row['date_end'] ?>" class="form-control validate" />
+                    </div>
+
                     <div class="form-group mb-3 col-xs-12 col-sm-6">
                       <label for="price">Price
                       </label>
                       <input id="price" name="price" type="text" value="<?php echo $row['price'] ?>" class="form-control validate" data-large-mode="true" />
                     </div>
+
                     <div class="form-group mb-3 col-xs-12 col-sm-6">
-                      <label for="time">Time
+                      <label for="people">People
                       </label>
-                      <input id="time" name="time" type="text" value="<?php echo $row['time'] ?>" class="form-control validate" />
+                      <input id="people" name="people" type="text" value="<?php echo $row['people'] ?>" class="form-control validate" data-large-mode="true" />
                     </div>
+                    
                   </div>                
             </div>
                   <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">

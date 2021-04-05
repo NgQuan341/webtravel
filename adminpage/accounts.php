@@ -22,11 +22,12 @@
   </head>
 
   <body id="reportsPage">
-    <nav class="navbar navbar-expand-xl">
+  <nav class="navbar navbar-expand-xl">
       <div class="container h-100">
         <a class="navbar-brand" href="index.php">
           <h1 class="tm-site-title mb-0">Travel Admin</h1>
         </a>
+        
         <button
           class="navbar-toggler ml-auto mr-0"
           type="button"
@@ -44,9 +45,10 @@
             <li class="nav-item">
               <a class="nav-link" href="index.php">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
-                <span class="sr-only">(current)</span>
+                <!-- <span class="sr-only">(current)</span> -->
               </a>
             </li>
+
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -66,9 +68,10 @@
                 <a class="dropdown-item" href="#">Yearly Report</a>
               </div>
             </li>
+
             <li class="nav-item">
-              <a class="nav-link " href="tours.php">
-                <i class="fas fa-shopping-cart"></i> Products
+              <a class="nav-link" href="tours.php">
+                <i class="fas fa-shopping-cart"></i> Tours
               </a>
             </li>
 
@@ -77,7 +80,8 @@
                 <i class="far fa-user"></i> Accounts
               </a>
             </li>
-            <li class="nav-item dropdown">
+
+            <!-- <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -95,7 +99,8 @@
                 <a class="dropdown-item" href="#">Billing</a>
                 <a class="dropdown-item" href="#">Customize</a>
               </div>
-            </li>
+            </li> -->
+            
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -143,14 +148,14 @@
                     <td><?php echo $row['username']?></td>
                     <td><?php echo $row['password']?></td>
                     <td><?php echo $row['email']?></td>
-                    <td><?php echo $row['rule']?></td>
+                    <td><?php echo $row['role']?></td>
                     <td>
                     
                       <a href="edit-account.php?id=<?php echo $row['id_acc']?>" class=" tm-product-update-link ">
                         <i class="far fa-edit tm-product-delete-icon"></i>
                       </a>
                     
-                      <a href="account_process.php?id_acc_delete=<?php echo $row['id_acc']?>" class="tm-product-delete-link">
+                      <a href="../process/account_process.php?id_acc_delete=<?php echo $row['id_acc']?>" class="tm-product-delete-link">
                         <i class="far fa-trash-alt tm-product-delete-icon"></i>
                       </a>
                     </td>

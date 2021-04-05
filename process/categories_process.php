@@ -1,6 +1,6 @@
 <?php
 include 'connectDB.php';
-$tour = new Tours();
+$cate = new Categories();
 $book = new BookTours();
 
 //Phần edit tour

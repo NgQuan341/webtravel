@@ -123,10 +123,12 @@ https://templatemo.com/tm-540-lava-landing-page
                 <div class="container">
                     <div class="row">
                         <?php
-                        include "connectDB.php";
+                        include "../process/connectDB.php";
                         $obj = new Tours();
                         $ketqua=$obj->action->display($obj->tablename);
-                        while($row=$ketqua->fetch_assoc()){?>
+                        while($row=$ketqua->fetch_assoc()){
+                            if($row['sale']){?>
+                            
                             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mb-5" data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                             <div class="features-item">
                                 <div class="features-icon">
@@ -141,6 +143,7 @@ https://templatemo.com/tm-540-lava-landing-page
                             </div>
                         </div>
                         <?php
+                            }
                         }
                         ?>                      
                         

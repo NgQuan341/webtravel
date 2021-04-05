@@ -18,6 +18,7 @@ create table IF NOT EXISTS `tours`(
     `remark` int CHECK(`remark`>=0 AND `remark`<=5),
     `img` TEXT,
     `id_cate` int,
+    `sale` boolean,
     foreign key(`id_cate`) references `categories`(`id_category`)    
 );
 
@@ -31,7 +32,7 @@ create table IF NOT EXISTS `accounts`(
     `phone` varchar(11),
     `address` varchar(255),
     `img` TEXT,
-    `rule` varchar(30)   
+    `role` varchar(30)   
 );
 
 
@@ -67,7 +68,7 @@ BEGIN
 END$$
 DELIMITER ;
 
-INSERT INTO `accounts`(`id_acc`, `username`, `email`, `password`,`lname`,`fname`,`phone`,`address`,`img`,`rule`) 
+INSERT INTO `accounts`(`id_acc`, `username`, `email`, `password`,`lname`,`fname`,`phone`,`address`,`img`,`role`) 
 VALUES 
     (1,"admin","quan.nguyen22@student.paserellesnumeriques.org","admin","admin","admin","000","admin",null,"admin"),
     (2,"QuanNg","quan.nguyen@gmail.com","113","Quân","Nguyễn","000","admin",null,"customer"),
@@ -80,7 +81,7 @@ VALUES (1,"Viet Nam"),(2,"Trung Quốc"),(3,"Nhật Bản"),
 (4,"Pháp"),(5,"Dubai") ,(6,"Bangkok");
 
 
-INSERT INTO `tours`(`id_tour`,`name_tour`, `price`, `date_start`,`date_end`, `from_place`, `description`,`people`,`remark`,`img`,`id_cate`) 
+INSERT INTO `tours`(`id_tour`,`name_tour`, `price`, `date_start`,`date_end`, `from_place`, `description`,`people`,`remark`,`img`,`id_cate`,`sale`) 
 VALUES 
     (1,
     "Hà Nội – Sapa",
@@ -92,7 +93,8 @@ VALUES
      3,
      5,
      null,
-     1),
+     1,
+     false),
 
     (2,
     "Hà Nội – Hạ Long",
@@ -104,7 +106,8 @@ VALUES
     3,
     5,
     null,
-    1),
+    1,
+     false),
 
     (3,
     "Đà Nẵng - Hội An", 
@@ -119,7 +122,8 @@ VALUES
     3,
     5, 
     null,
-    1),
+    1,
+     false),
 
     (4,
     "Hang Sơn Đoòng", 
@@ -132,7 +136,8 @@ VALUES
     3,
     5, 
     null,
-    1),
+    1,
+     false),
     
     (5, 
     "Bắc Kinh-Hải Châu", 
@@ -144,7 +149,8 @@ VALUES
     3,
     5, 
     null,
-    1),
+    1,
+     false),
     
     (6, 
     "Phượng Hoàng Cổ Trấn", 
@@ -156,7 +162,8 @@ VALUES
     3,
     5, 
     null,
-    1),
+    1,
+     false),
 
     (7, 
     "Vạn Lý Trường Thành", 
@@ -168,7 +175,8 @@ VALUES
     3,
     5, 
     null,
-    2),
+    2,
+     false),
         
 (8, 
 "Tử Cấm Thành", 
@@ -180,7 +188,8 @@ VALUES
 3,
 5, 
 null,
-2),
+2,
+     false),
 --         
 (9, 
 "Japan - Otaru", 
@@ -195,7 +204,8 @@ những món hải sản tuyệt vời. Ngoài ra, khu vực còn có suối nư
 3,
 5, 
 null,
-3),
+3,
+     false),
 --         
 (10, 
 "Japan - Núi Phú Sĩ", 
@@ -207,7 +217,8 @@ null,
 3,
 5, 
 null,
-3),
+3,
+     false),
          
 (11, 
 "Japan - Tháp Tokyo", 
@@ -221,7 +232,8 @@ xem là biểu tượng của Tokyo kể từ khi mới xây dựng vào năm 19
 3,
 5, 
 null,
-3),
+3,
+     false),
 --          
 (12, 
 "Japan - Shinsekai", 
@@ -235,7 +247,8 @@ null,
 3,
 5, 
 null,
-4),
+4,
+     false),
 --         
 (13, 
 "TP.HCM – PARIS(PHÁP)", 
@@ -248,7 +261,8 @@ thành phố được ghé thăm nhiều nhất trên thế giới, và vì lý 
 3,
 5, 
 null,
-4),
+4,
+     false),
         
 (14, 
 "Đảo Mont Saint-Michel", 
@@ -263,7 +277,8 @@ và chiến trường của các trận chiến lịch sử.",
 3,
 5, 
 null,
-4),
+4,
+     false),
 --           
 (15,
 "Bảo tàng Louvre", 
@@ -277,7 +292,8 @@ dựng từ thế kỷ 12. Sau đó, nó được chuyển đổi thành một c
 3,
 5, 
 null,
-4),
+4,
+     false),
 
 (16, 
 "Burj Khalifa – Kiến trúc Marvel", 
@@ -290,7 +306,8 @@ chung rồi? Burj Khalifa là tòa nhà mang tính bước ngoặt nằm trong d
 3,
 5, 
 null,
-5),
+5,
+     false),
            
 (17, 
 "Wild Wadi", 
@@ -304,7 +321,8 @@ du lịch gia đình, nhất là có trẻ em.",
 3,
 5, 
 null,
-5),
+5,
+     false),
 --
 (18, 
 "Thủy cung Dubai", 
@@ -318,7 +336,8 @@ hợp độc đáo, vì vậy bạn chắc chắn sẽ gặt hái được nhi�
 3,
 5, 
 null,
-5),
+5,
+     false),
 
 (19, 
 "Mall Of The Emirates", 
@@ -332,7 +351,8 @@ trượt tuyết tuyệt vời thiết lập và bao vây chim cánh cụt – t
 3,
 5, 
 null,
-5),
+5,
+     false),
 --  
 (20, 
 "Grand Palace", 
@@ -346,7 +366,8 @@ lên bởi những lá vàng, tạo ra màu vàng bền bỉ qua thời gian và
 3,
 5, 
 null,
-6),
+6,
+     false),
    
 (21, 
 "Chùa Phật Vàng", 
@@ -360,7 +381,8 @@ lớn nhất trên thế giới. Bên cạnh điểm nổi bật ấy, ngôi ch�
 3,
 5, 
 null,
-6),
+6,
+     false),
 --     
 (22, 
 "Dream World", 
@@ -374,7 +396,8 @@ dẫn được đầu tư vô cùng công phu. Nếu gia đình có trẻ nhỏ 
 3,
 5, 
 null,
-6),
+6,
+     false),
 --      
 (23, 
 "Koh Larn", 
@@ -388,7 +411,8 @@ có các trò chơi quen thuộc như lái mô tô nước, lướt ván hay nh�
 3,
 5, 
 null,
-6);
+6,
+     false);
 
 
 
