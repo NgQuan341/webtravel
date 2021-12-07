@@ -104,7 +104,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.php">
+              <a class="nav-link d-block" href="../originalWEB/login.php">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -169,16 +169,7 @@
               </table>
             </div>
             <!-- table container -->
-            <div class="row">
-               <div class="col-lg-4">
-                  <a href="add-tour.php" class="btn btn-primary btn-block text-uppercase mb-3">Add new product</a>
-                </div>
-                <div class=" col-lg-4">
-                  <button class="btn btn-primary btn-block text-uppercase">
-                    Delete selected products
-                  </button>
-                </div>
-            </div>
+            
           </div>
         </div>       
                 </tbody>
@@ -194,13 +185,7 @@
     <footer class="tm-footer row tm-mt-small">
       <div class="col-12 font-weight-light">
         <p class="text-center text-white mb-0 px-4 small">
-          Copyright &copy; <b>2018</b> All rights reserved. Design:
-          <a
-            rel="nofollow noopener"
-            href="https://templatemo.com"
-            class="tm-footer-link"
-            >Template Mo</a
-          >
+         
         </p>
       </div>
     </footer>

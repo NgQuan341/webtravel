@@ -103,7 +103,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.php">
+              <a class="nav-link d-block" href="../originalWEB/login.php">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -112,7 +112,7 @@
       </div>
     </nav>
 
-    <div class="container mt-5">
+    <div class="container-flud mx-5 mt-5">
       
       <!-- row -->
       <?php
@@ -125,75 +125,77 @@
       ?>
 
         <div class="row tm-content-row">
-          <div class="tm-block-col tm-col-avatar">
+          <!-- <div class="tm-block-col tm-col-avatar">
 
-            <div class="tm-bg-primary-dark tm-block tm-block-avatar">
-              <h2 class="tm-block-title">Change Avatar</h2>
-              <div class="tm-avatar-container">
-                <img src="img/avatar.png" alt="Avatar" class="tm-avatar img-fluid mb-4" />
-                <a href="#" class="tm-avatar-delete-link">
-                  <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                </a>
-              </div>
-              <button class="btn btn-primary btn-block text-uppercase">
-                Upload New Photo
-              </button>
-            </div>
+            
 
-          </div>
+          </div> -->
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
               <h2 class="tm-block-title">Account Settings</h2>
               <?php
               //
               ?>
-              <form action="../process/account_process.php" method="post" class="tm-signup-form row">
+              <form action="../process/account_process.php" method="post" class="tm-signup-form row" enctype="multipart/form-data">
+              <div class="col-lg-8">
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="id">Id</label>
+                      <input id="id" name="id_acc" type="number" class="form-control validate" value="<?php echo $row['id_acc'] ?>" />
+                    </div>
 
-                <div class="form-group col-lg-6">
-                  <label for="id">Id</label>
-                  <input id="id" name="id_acc" type="number" class="form-control validate" value="<?php echo $row['id_acc'] ?>" />
+                    <div class="form-group col-lg-6">
+                      <label for="name">Account Name</label>
+                      <input id="name" name="username" type="text" class="form-control validate" value="<?php echo $row['username'] ?>" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                      <label for="fname">First Name</label>
+                      <input id="fname" name="fname" type="text" class="form-control validate" value="<?php echo $row['fname'] ?>" />
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                      <label for="lname">Last Name</label>
+                      <input id="lname" name="lname" type="text" class="form-control validate" value="<?php echo $row['lname'] ?>" />
+                    </div>
+                </div>
+                <div class="row">
+
+                  <div class="form-group col-lg-6">
+                    <label for="email">Account Email</label>
+                    <input id="email" name="email" type="email" class="form-control validate" value="<?php echo $row['email'] ?>" />
+                  </div>
+
+                  <div class="form-group col-lg-6">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="text" class="form-control validate" value="<?php echo $row['password'] ?>" />
+                  </div>
+                
                 </div>
 
-                <div class="form-group col-lg-6">
-                  <label for="name">Account Name</label>
-                  <input id="name" name="username" type="text" class="form-control validate" value="<?php echo $row['username'] ?>" />
-                </div>
+                <div class="row">
 
-                <div class="form-group col-lg-6">
-                  <label for="fname">First Name</label>
-                  <input id="fname" name="fname" type="text" class="form-control validate" value="<?php echo $row['fname'] ?>" />
+                  <div class="form-group col-lg-6">
+                    <label for="address">Address</label>
+                    <input id="address" name="address" type="text" class="form-control validate" value="<?php echo $row['address'] ?>"/>
+                  </div>
+                  
+                  <div class="form-group col-lg-6">
+                    <label for="phone">Phone</label>
+                    <input id="phone" name="phone" type="tel" class="form-control validate" value="<?php echo $row['phone'] ?>" />
+                  </div>
+                
                 </div>
-
-                <div class="form-group col-lg-6">
-                  <label for="lname">Last Name</label>
-                  <input id="lname" name="lname" type="text" class="form-control validate" value="<?php echo $row['lname'] ?>" />
-                </div>
-
-                <div class="form-group col-lg-6">
-                  <label for="email">Account Email</label>
-                  <input id="email" name="email" type="email" class="form-control validate" value="<?php echo $row['email'] ?>" />
-                </div>
-
-                <div class="form-group col-lg-6">
-                  <label for="password">Password</label>
-                  <input id="password" name="password" type="text" class="form-control validate" value="<?php echo $row['password'] ?>" />
-                </div>
-
-                <div class="form-group col-lg-6">
-                  <label for="address">Address</label>
-                  <input id="address" name="address" type="text" class="form-control validate" value="<?php echo $row['address'] ?>"/>
+                <div class="row mb-3">
+                  <div class="form-group col-12">
+                  <label for="role">Role</label>
+                  <select class="custom-select" id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="customer">Customer</option>
+                  </select>
                 </div>
                 
-                <div class="form-group col-lg-6">
-                  <label for="phone">Phone</label>
-                  <input id="phone" name="phone" type="tel" class="form-control validate" value="<?php echo $row['phone'] ?>" />
-                </div>
-                <div class="form-group col-12">
-                <label for="role">Role</label>
-                <select class="custom-select" id="role" name="role">
-                  <option value="admin">Admin</option>
-                  <option value="customer">Customer</option>
-                </select>
                 </div>
 
                 <div class="col-12">
@@ -204,10 +206,42 @@
 
                 <div class="form-group col-12">
                   <label class="tm-hide-sm">&nbsp;</label>
-                  <a href="process/account_process.php?id_acc_delete=<?php echo $row['id_acc'] ?>" class="btn btn-primary btn-block text-uppercase">
+                  <a href="../process/account_process.php?id_acc_delete=<?php echo $row['id_acc'] ?>" class="btn btn-primary btn-block text-uppercase">
                     Delete your account
                   </a>
                 </div>
+              
+              </div>
+
+
+
+              <div class="col-lg-4">
+                <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+                  <h2 class="tm-block-title">Change Avatar</h2>
+                  <div class="tm-avatar-container">
+                    <img src="../img/<?php echo $row['img'] ?>" alt="Avatar" class="tm-avatar img-fluid mb-4" />
+                    
+                    <a href="#" class="tm-avatar-delete-link">
+                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                    </a>
+                  </div>
+                  <label for="file" 
+                  class="btn btn-primary btn-block text-uppercase"
+                  >Upload New Photo</label>
+                  <input class="btn btn-primary btn-block text-uppercase" id="file" name="img"
+                  style="width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;"
+                  type="file">
+                
+                </div>
+              </div>
+              
+
+                
                 
 
               </form>

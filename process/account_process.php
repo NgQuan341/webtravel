@@ -9,6 +9,7 @@ if (isset($_POST['submit_account'])) {?>
         alert("Update account successful");
     </script>
         <?php
+        if(!empty($_FILES['img']['name'])){
             $acc->setData(
                 $_POST['id_acc'], 
                 $_POST['username'], 
@@ -18,9 +19,30 @@ if (isset($_POST['submit_account'])) {?>
                 $_POST['fname'],
                 $_POST['phone'],
                 $_POST['address'],
-                $_POST['img'],
+                $_FILES['img']['name'],
                 $_POST['role']);
+
+
+        }
+            
+        else{
+            $checkfile=$acc->action->displayOne($acc->tablename,$acc->col_id,$_POST['id_acc']);
+            if($row=$checkfile->fetch_assoc()){
+                $acc->setData(
+                    $_POST['id_acc'], 
+                    $_POST['username'], 
+                    $_POST['email'], 
+                    $_POST['password'],
+                    $_POST['lname'],
+                    $_POST['fname'],
+                    $_POST['phone'],
+                    $_POST['address'],
+                    $row['img'],
+                    $_POST['role']); 
+            }
+        }
             $data = $acc->getDataToUpdate();
+            require 'upload_account.php';
             $acc->action->update($acc->tablename, $acc->col_id, $_POST['id_acc'], $data);
         ?>
     <script>

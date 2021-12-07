@@ -103,7 +103,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.php">
+              <a class="nav-link d-block" href="../process/login_process.php?logout">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -124,13 +124,13 @@
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-overflow">
                         <h2 class="tm-block-title">Notification List</h2>
                         <div class="tm-notification-items">
-                            <div class="media tm-notification-item">
+                            <!-- <div class="media tm-notification-item">
                                 <div class="tm-gray-circle"><img src="img/notification-01.jpg" alt="Avatar Image" class="rounded-circle"></div>
                                 <div class="media-body">
                                     <p class="mb-2"><b>Jessica</b> and <b>6 others</b> sent you new <a href="#" class="tm-notification-link">product updates</a>. Check new orders.</p>
                                     <span class="tm-small tm-text-color-secondary">6h ago.</span>
                                 </div>
-                            </div>
+                            </div> -->
                             
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                                     <th scope="row"><b><?php echo $row['id_order']?></b></th>
                                     <td>
                                         <div class="tm-status-circle moving">
-                                        </div>Moving
+                                        </div>Checkout
                                     </td>
                                     <td><b><?php echo $row2['name_tour']?></b></td>
                                     <td><b><?php echo $row1['email']?></b></td>

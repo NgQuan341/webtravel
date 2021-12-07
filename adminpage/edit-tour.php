@@ -10,7 +10,7 @@
   <!-- https://fonts.google.com/specimen/Roboto -->
   <link rel="stylesheet" href="css/fontawesome.min.css" />
   <!-- https://fontawesome.com/ -->
-  <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="jquery-ui-datepicker/jquery-ui.min.css" type="text/css" /> -->
   <!-- http://api.jqueryui.com/datepicker/ -->
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <!-- https://getbootstrap.com/ -->
@@ -104,7 +104,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link d-block" href="login.php">
+              <a class="nav-link d-block" href="../originalWEB/login.php">
                 Admin, <b>Logout</b>
               </a>
             </li>
@@ -129,32 +129,42 @@
               $ketqua = $tour->action->displayOne($tour->tablename, $tour->col_id, $_GET['id']);
               while ($row = $ketqua->fetch_assoc()) {
               ?>
-              <form action="../process/tour_process.php" method="post" class="tm-edit-product-form">
+              <form action="../process/tour_process.php" method="post" class="tm-edit-product-form" enctype="multipart/form-data">
+
                   <div class="form-group mb-3">
                     <input id="id_tour" name="id_tour" type="hidden" style="color: grey"  value="<?php echo $row['id_tour'] ?>" class="form-control validate"/>
                   </div>
+
                   <div class="form-group mb-3">
                     <label for="name_tour">Tour name
                     </label>
                     <input id="name_tour" name="name_tour" type="text" value="<?php echo $row['name_tour'] ?>" class="form-control validate" />
                   </div>
+
                   <div class="form-group mb-3">
                     <label for="from_place">from place
                     </label>
                     <input id="from_place" name="from_place" type="text" value="<?php echo $row['from_place'] ?>" class="form-control validate" />
                   </div>
+
                   <div class="form-group mb-3">
                     <label for="description">Description</label>
                     <textarea class="form-control validate tm-small" rows="5" id="description" name="description"><?php echo $row['description'] ?></textarea>
                   </div>
+
                   <div class="row">
+
                     <div class="form-group mb-3 col-6">                    
                     <label for="category">Category</label>
                     <select class="custom-select tm-select-accounts" id="category" name="id_cate">
                       <?php
-                      
                       $cate = new Categories();
                       $result=$cate->action->display($cate->tablename);
+                      $result1=$cate->action->displayOne($cate->tablename,$cate->col_id,$row['id_cate']);
+                      if($kq=$result1->fetch_assoc()){?>
+                       <option selected="selected" value=<?php echo $kq['id_category']?> ><?php echo $kq['category_name']?></option>
+                      <?php
+                      }
                       while($r=$result->fetch_assoc()){
                       ?>
                       <option value=<?php echo $r['id_category']?> ><?php echo $r['category_name']?></option>
@@ -206,16 +216,24 @@
                     
                     <div class="tm-product-img-edit mx-auto">
                       <label style="color:white" for="">Image</label>
-                      <img src="img/product-image.jpg" alt="Tour image" class="img-fluid d-block mx-auto">
-                      <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i>
+                      <img src="../img/<?php echo $row['img'] ?>" alt="Tour image" class="img-fluid d-block mx-auto">
+                      <!-- <i class="fas fa-cloud-upload-alt tm-upload-icon" onclick="document.getElementById('fileInput').click();"></i> -->
                     </div>
                     <div class="custom-file mt-3 mb-3">
-                      <input id="fileInput" type="file" style="display:none;" />
-                      <input type="button" class="btn btn-primary btn-block mx-auto" value="CHANGE IMAGE NOW" onclick="document.getElementById('fileInput').click();" />
-                    </div>
+                    <label for="file" 
+                      class="btn btn-primary btn-block text-uppercase">Upload New Photo</label>
+                      <input class="btn btn-primary btn-block text-uppercase" id="file" name="img"
+                      style="width: 0.1px;
+                            height: 0.1px;
+                            opacity: 0;
+                            overflow: hidden;
+                            position: absolute;
+                            z-index: -1;"
+                      type="file">
+                        </div>
                   </div>
                   <div class="col-12">
-                    <button type="submit" name="submit" class="btn btn-primary btn-block text-uppercase">UPDATE NOW</button>
+                    <button type="submit" name="submit_update_tour" class="btn btn-primary btn-block text-uppercase">UPDATE NOW</button>
                   </div>
             </form>
           <?php

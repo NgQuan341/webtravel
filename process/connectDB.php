@@ -51,6 +51,15 @@
               }
 
         }
+        public function deleteAll($tablename){
+            $sql = "DELETE FROM `$tablename`";
+            if ($this->con->con->query($sql) === TRUE) {
+                echo "Delete successfully";
+              } else {
+                echo "Error: " . $sql . "<br>";
+              }
+
+        }
         public function displayOne($tablename,$col_id,$id){
             $sql = "SELECT * FROM `$tablename` WHERE $col_id='$id'";
             $ketqua=$this->con->con->query($sql);
@@ -90,7 +99,7 @@
 
         private $id;
         private $name_tour;
-        private $price;
+        private $price=0;
         private $date_start;
         private $date_end;
         private $from_place;
@@ -258,15 +267,27 @@
         public $col_id="id_book";
         public $col_id_acc='id_acc';
         public $col_id_tour='id_tour';
+        public $col_date_book="date_book";
 
         private $id;
         private $id_book;
         private $id_acc;
         private $id_tour;
+        private $date_book;
         public function __construct(){
             $this->action = new Action();
         }
-
+        public function setData($id_acc,$id_tour){            
+            $this->id_acc = $id_acc;
+            $this->id_tour = $id_tour;
+            
+        }
+        public function getDataToInsert(){
+            $data=["
+            `$this->col_id_acc`,`$this->col_id_tour`",  
+            "'$this->id_acc','$this->id_tour'"];
+            return $data;
+        }
 
         
     }
@@ -298,7 +319,38 @@
             return $data;
 
         }
+        
 
         
+    }
+    class Login{
+        public $action;
+        public $tablename="log_in";
+        public $col_id="id_acc";
+        
+        private $id;
+      
+        public function __construct(){
+            $this->action = new Action();
+        }
+
+        public function setData($id){
+            $this->id=$id;
+           
+        }
+        public function getDataToInsert(){
+            $data=["
+            `$this->col_id`",  
+            "'$this->id'"];
+            return $data;
+        }
+        // public function getDataToUpdate(){
+        //     $data="
+        //     `$this->col_category_name`='$this->cate_name'";
+        //     return $data;
+        // }
+
+
+            
     }
 ?>

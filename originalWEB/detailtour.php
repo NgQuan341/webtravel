@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+session_start();
+?>
 
 <head>
 
@@ -10,10 +13,10 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
-    <title>Lava Landing Page HTML Template</title>
+    <title>Details Page</title>
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
@@ -36,39 +39,51 @@
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.php" class="logo">
-                            Quân
+                        <a href="../index.php" class="logo">
+                           OverTravel
                         </a>
                         <!-- ***** Logo End ***** -->
 
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li class="scroll-to-section"><a href="#welcome" class="menu-item">Home</a></li>
-                            <li class="scroll-to-section"><a href="#about" class="menu-item">About</a></li>
-                            <li class="scroll-to-section"><a href="#testimonials" class="menu-item">Testimonials</a>
-                            </li>
-                            <li class="submenu">
-                                <a href="javascript:;">Drop Down</a>
-                                <ul>
-                                    <li><a href="" class="menu-item">About Us</a></li>
-                                    <li><a href="" class="menu-item">Features</a></li>
-                                    <li><a href="" class="menu-item">FAQ's</a></li>
-                                    <li><a href="" class="menu-item">Blog</a></li>
-                                </ul>
-                            </li>
+                            <li class="scroll-to-section"><a href="#details" class="menu-item">Detail</a></li>
+                            <li class="scroll-to-section"><a href="#categories" class="menu-item">Categories</a></li>
+                            <li class="scroll-to-section"><a href="#promotion" class="menu-item">Promotion</a></li>
                             <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li>
+                            <?php
+                                if($_SESSION['login_role']=='admin'){
+                                    echo '<li class="scroll-to-section" id=""><a href="../adminpage/index.php" class="menu-item">Admin Page</a></li>';
+                                }
+                                if($_SESSION['login_status']){
+                                   echo '<li class="scroll-to-section" id="section-login"><a href="../process/login_process.php?logout" class="menu-item">'.$_SESSION['login_status'].' ,logout</a></li>';
+                                }
+                                else{
+                                   echo '<li class="scroll-to-section" id="section-login"><a href="login.php" class="menu-item">login</a></li>';
+                                   echo '<li class="scroll-to-section" id="section-login"><a href="signup.php" class="menu-item">sign up</a></li>';
+                                }
+                            ?>
 
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
                         </a>
-                        <a href="Login.php" class="logo1">
-                            Login
-                        </a>
+                        <?php
+                        if($_SESSION['login_status']){                        
 
-                        <a href="index.html" class="logo1">
-                            Sign up
-                        </a>
+                        echo '<a href="../process/login_process.php?logout" id="section-before-login" class="logo1">'.$_SESSION['login_status'].' ,logout</a>';
+                        }
+                        else{
+                            echo '<a href="signup.php" id="section-before-login" class="logo1">sign up</a>';
+
+                            echo '<a href="login.php" id="section-before-login" class="logo1">login</a>'; 
+
+                        }
+                            
+                        
+                                      
+                        ?>
+                        
                         <!-- ***** Menu End ***** -->
                     </nav>
                 </div>
@@ -81,6 +96,7 @@
 
     <!-- ***** Welcome Area Start ***** -->
     <div class="welcome-area" data-scroll-reveal="enter right move 30px over 0.6s after 0.4s" id="welcome">
+        <!-- <div class="welcome-area-hidden" >hello</div> -->
 
         <!-- ***** Header Text Start ***** -->
         <div class="header-text">
@@ -89,9 +105,9 @@
                     <div class="left-text col-lg-6 col-md-12 col-sm-12 col-xs-12"
                         data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
                         <h1>Let's travel <em>ANYWHERE</em></h1>
-                        <p>Travel website mang đến cho bạn những trải nhiệm tuyệt vời. Hãy khám phá, trải nghiệm một
-                            chuyến du lịch cùng với người thân bạn bè, hãy đến với chúng tôi. Các đội ngũ của chúng tôi
-                            sẽ không làm bạn thất vọng.</p>
+                        <p>Travel website gives you great experiences. Let's explore, experience one
+                            Traveling with relatives and friends, come with us. Our teams
+                            will not let you down.</p>
                         <a href="#about" class="main-button-slider">BOOK NOW</a>
                     </div>
                 </div>
@@ -105,7 +121,7 @@
     <div class="left-image-decor"></div>
 
     <!-- ***** Features Big Item Start ***** -->
-    <section class="section" id="about">
+    <section class="section mt-5" id="details">
         <div class="right-image-decor"></div>
         <div class="container">
             <?php
@@ -119,26 +135,26 @@
                 <div class="left-image col-lg-5 col-md-12 col-sm-12 mobile-bottom-fix-big"
                     data-scroll-reveal="enter left move 30px over 0.6s after 0.4s" data-scroll-reveal-id="29"
                     data-scroll-reveal-initialized="true" data-scroll-reveal-complete="true">
-                    <img src="assets/images/hinhdetail.jpg" class="rounded img-fluid d-block mx-auto" alt="App">
+                    <img src="../img/<?php echo $row['img']?>" width="500px" height="250px"  class="rounded img-fluid d-block mx-auto" alt="App">
                 </div>
 
                 <div class="right-text offset-lg-1 col-lg-6 col-md-12 col-sm-12 mobile-bottom-fix" id="inforofTour">
-                    <div class="tour-infomation">
+                    <div class="tour-infomation" style="font-size: 30px;">
                         <h2 id="displaynameTour" style="font-size: 40px; font-weight:600">
                             <?php echo $row['name_tour']?>
                         </h2>
 
-                        <p id="star_remark">
-                        <p><i class="fa fa-usd mr-4 " style="color: #f4813f ;" aria-hidden="true">
-                    </i><?php echo $row['price']?></p>
+                        <p class="mt-2">
+                        <p style="font-size:18px"><i class="fa fa-usd mr-4 " style="color: #f4813f;" aria-hidden="true">
+                        </i><?php echo $row['price']?></p>
 
                         </p>
                        
-                        <p>
-                        <p><i class="fa fa-map-marker mr-4" style="color: #f4813f ;" aria-hidden="true"></i><?php echo $row['from_place']?></p>
+                        <p class="mt-2">
+                        <p style="font-size:18px"><i class="fa fa-map-marker mr-4" style="color: #f4813f ;" aria-hidden="true"></i><?php echo $row['from_place']?></p>
                         </p>
 
-                        <p>
+                        <p class="mt-2" style="font-size:18px">
                             <?php for($i=0;$i<$row['remark'];$i++){ ?>
                         <i class="fa fa-star mr-1" style="color: #f4813f ;" aria-hidden="true"></i>
                         <?php }?>
@@ -152,32 +168,34 @@
                         <?php echo $row['description']?>
                         </p>
                         <div class="tour-infomation-content-time-table">
-                            <span>Thời gian khởi hành</span>
+                            <span>Date - start</span>
                             <p><?php echo date('d/m/Y',strtotime($row['date_start']))?></p>
                         </div>
                         <div class="tour-infomation-content-time-table">
-                            <span>Thời gian trở lại</span>
+                            <span>Date - comeback</span>
                             <p><?php echo date('d/m/Y',strtotime($row['date_end']))?></p>
                         </div>
                         <div class="tour-infomation-content-time-table">
-                            <span>Khởi hành</span>
-                            <p>Sân bay Quốc tế</p>
+                            <span>Place - from</span>
+                            <p>Airport</p>
                         </div>
                         
                         <div class="tour-infomation-content-time-table">
-                            <span>Trang phục</span>
-                            <p>Đơn giản, nhẹ nhàng</p>
+                            <span>Clothes</span>
+                            <p>Simple, gentle</p>
                         </div>
                         <div class="tour-infomation-content-time-table">
-                            <span>Giá bao gồm</span>
-                            <p>Chổ ở, Bảo hiểm, Bữa ăn sáng, Phí di chuyển</p>
+                            <span>Price include</span>
+                            <p>Accommodation, Insurance, Breakfast, Travel Fee</p>
                         </div>
-                        <div class="tour-infomation-content-time-table">
-                            <span>Giá không bao gồm</span>
-                            <p>Phí chuyến bay, quà lưu niệm</p>
-                        </div>
+
                     </div>
-                    <button type="submit" id="form-submit" class="main-button my-5 col-6"> BOOK TOUR</button>
+                    <div class="mt-4">
+                        <a href="thanhtoan.php?id=<?php echo $row['id_tour']?>" class="main-button mt-4">
+                              BOOK NOW
+                            </a>
+                        </div>
+                    
                 </div>
             </div>
             <?php

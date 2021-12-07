@@ -631,9 +631,12 @@ header
 .header-area.header-sticky .nav li a.active {
     color: #fba70b;
 }
-#section-login,#section-signup{
+
+#section-login,
+#section-signup {
     display: none;
 }
+
 @media (max-width: 1200px) {
     .header-area .main-nav .nav li {
         padding-left: 12px;
@@ -736,7 +739,8 @@ header
     .header-area .main-nav .nav li.submenu:focus ul {
         height: 0px;
     }
-    #section-login,#section-signup{
+    #section-login,
+    #section-signup {
         display: block;
     }
 }
@@ -761,6 +765,14 @@ welcome
     background-image: url(../images/Travell.png);
     background-repeat: no-repeat;
     background-position: right top;
+}
+
+.welcome-area-hidden {
+    width: 50%;
+    height: 60vh;
+    min-height: 793px;
+    position: absolute;
+    background-color: white;
 }
 
 .welcome-area .header-text .left-text {
@@ -1701,10 +1713,11 @@ preloader
 .div__Homepage--content {
     padding: 0 10%;
 }
+
 .tour-infomation-content-time-table {
     height: 50px;
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
     border-bottom: 1px solid #e6e6e6;
-    }
+}
